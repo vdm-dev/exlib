@@ -22,26 +22,26 @@
 
 size_t ex_strlcpy(char* destination, const char* source, size_t dsize)
 {
-    const char* osrc = source;
-    size_t nleft = dsize;
+    size_t result = 0;
 
-    /* Copy as many bytes as will fit. */
-    if (nleft != 0) {
-        while (--nleft != 0) {
-            if ((*destination++ = *source++) == '\0')
-                break;
-        }
+    while (source[result] != '\0')
+    {
+        if (result < dsize)
+            destination[result] = source[result];
+
+        result++;
     }
 
-    /* Not enough room in dst, add NUL and traverse rest of src. */
-    if (nleft == 0) {
-        if (dsize != 0)
-            *destination = '\0';		/* NUL-terminate dst */
-        while (*source++)
-            ;
+    if (result < dsize)
+    {
+        destination[result] = '\0';
+    }
+    else if (dsize > 0)
+    {
+        destination[dsize - 1] = '\0';
     }
 
-    return (size_t)(source - osrc - 1); /* count does not include NUL */
+    return result;
 }
 
 size_t ex_strlcat(char* destination, const char* source, size_t dsize)
