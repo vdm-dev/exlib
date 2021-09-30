@@ -64,5 +64,24 @@ void ex_decstr_from_ushort(char* result, unsigned short value);
 void ex_decstr_from_uint(char* result, unsigned int value);
 void ex_decstr_from_ulong(char* result, unsigned long value);
 
+/* hexstr_from.c */
+void ex_hexstr_from_i8(char* result, int8_t value);
+void ex_hexstr_from_i16(char* result, int16_t value);
+void ex_hexstr_from_i32(char* result, int32_t value);
+void ex_hexstr_from_i64(char* result, int64_t value);
+
+void ex_hexstr_from_short(char* result, short value);
+void ex_hexstr_from_int(char* result, int value);
+void ex_hexstr_from_long(char* result, long value);
+
+void ex_hexstr_from_u8(char* result, uint8_t value);
+void ex_hexstr_from_u16(char* result, uint16_t value);
+void ex_hexstr_from_u32(char* result, uint32_t value);
+void ex_hexstr_from_u64(char* result, uint64_t value);
+
+void ex_hexstr_from_ushort(char* result, unsigned short value);
+void ex_hexstr_from_uint(char* result, unsigned int value);
+void ex_hexstr_from_ulong(char* result, unsigned long value);
+
 
 #endif /* EX_STRINGS_H_INCLUDED */
