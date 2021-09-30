@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.6)
 
 set(PROJECT exlib)
 
-project(${PROJECT})
+project(${PROJECT} LANGUAGES C)
 
 enable_testing()
 
