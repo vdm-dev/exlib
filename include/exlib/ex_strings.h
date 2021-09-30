@@ -37,8 +37,32 @@
 #include <exlib/ex_types.h>
 
 
+/* base.c */
 size_t ex_strlcpy(char* destination, const char* source, size_t dsize);
 size_t ex_strlcat(char* destination, const char* source, size_t dsize);
+void* ex_memrev(void* pointer, size_t size);
+
+/* substrings.c */
+const char* ex_str_skip(const char* string, char character);
+
+/* decstr_from.c */
+void ex_decstr_from_i8(char* result, int8_t value);
+void ex_decstr_from_i16(char* result, int16_t value);
+void ex_decstr_from_i32(char* result, int32_t value);
+void ex_decstr_from_i64(char* result, int64_t value);
+
+void ex_decstr_from_short(char* result, short value);
+void ex_decstr_from_int(char* result, int value);
+void ex_decstr_from_long(char* result, long value);
+
+void ex_decstr_from_u8(char* result, uint8_t value);
+void ex_decstr_from_u16(char* result, uint16_t value);
+void ex_decstr_from_u32(char* result, uint32_t value);
+void ex_decstr_from_u64(char* result, uint64_t value);
+
+void ex_decstr_from_ushort(char* result, unsigned short value);
+void ex_decstr_from_uint(char* result, unsigned int value);
+void ex_decstr_from_ulong(char* result, unsigned long value);
 
 
 #endif /* EX_STRINGS_H_INCLUDED */
