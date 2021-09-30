@@ -102,5 +102,24 @@ void ex_hexstr_from_ushort(char* result, unsigned short value);
 void ex_hexstr_from_uint(char* result, unsigned int value);
 void ex_hexstr_from_ulong(char* result, unsigned long value);
 
+/* hexstr_to.c */
+int8_t ex_hexstr_to_i8(char* string, bool* ok);
+int16_t ex_hexstr_to_i16(char* string, bool* ok);
+int32_t ex_hexstr_to_i32(char* string, bool* ok);
+int64_t ex_hexstr_to_i64(char* string, bool* ok);
+
+short ex_hexstr_to_short(char* string, bool* ok);
+int ex_hexstr_to_int(char* string, bool* ok);
+long ex_hexstr_to_long(char* string, bool* ok);
+
+uint8_t ex_hexstr_to_u8(char* string, bool* ok);
+uint16_t ex_hexstr_to_u16(char* string, bool* ok);
+uint32_t ex_hexstr_to_u32(char* string, bool* ok);
+uint64_t ex_hexstr_to_u64(char* string, bool* ok);
+
+unsigned short ex_hexstr_to_ushort(char* string, bool* ok);
+unsigned int ex_hexstr_to_uint(char* string, bool* ok);
+unsigned long ex_hexstr_to_ulong(char* string, bool* ok);
+
 
 #endif /* EX_STRINGS_H_INCLUDED */
