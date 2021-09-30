@@ -64,6 +64,25 @@ void ex_decstr_from_ushort(char* result, unsigned short value);
 void ex_decstr_from_uint(char* result, unsigned int value);
 void ex_decstr_from_ulong(char* result, unsigned long value);
 
+/* decstr_to.c */
+int8_t ex_decstr_to_i8(char* string, bool* ok);
+int16_t ex_decstr_to_i16(char* string, bool* ok);
+int32_t ex_decstr_to_i32(char* string, bool* ok);
+int64_t ex_decstr_to_i64(char* string, bool* ok);
+
+short ex_decstr_to_short(char* string, bool* ok);
+int ex_decstr_to_int(char* string, bool* ok);
+long ex_decstr_to_long(char* string, bool* ok);
+
+uint8_t ex_decstr_to_u8(char* string, bool* ok);
+uint16_t ex_decstr_to_u16(char* string, bool* ok);
+uint32_t ex_decstr_to_u32(char* string, bool* ok);
+uint64_t ex_decstr_to_u64(char* string, bool* ok);
+
+unsigned short ex_decstr_to_ushort(char* string, bool* ok);
+unsigned int ex_decstr_to_uint(char* string, bool* ok);
+unsigned long ex_decstr_to_ulong(char* string, bool* ok);
+
 /* hexstr_from.c */
 void ex_hexstr_from_i8(char* result, int8_t value);
 void ex_hexstr_from_i16(char* result, int16_t value);

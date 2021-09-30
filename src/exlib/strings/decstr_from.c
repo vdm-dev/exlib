@@ -56,6 +56,7 @@
     result[size] = '\0';              \
     ex_memrev(result, size);          \
 
+
 #define EX_DECSTR_FROM_UNSIGNED()     \
     int8_t digit = 0;                 \
     size_t size = 0;                  \
