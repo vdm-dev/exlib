@@ -10,3 +10,4 @@ macro(make_test test_name)
 endmacro(make_test)
 
 make_test(test-strlcpy)
+make_test(test-strlcat)
