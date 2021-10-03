@@ -11,3 +11,4 @@ endmacro(make_test)
 
 make_test(test-strlcpy)
 make_test(test-strlcat)
+make_test(test-decstr_from)

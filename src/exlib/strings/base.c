@@ -62,29 +62,34 @@ size_t ex_strlcpy(char* destination, const char* source, size_t dsize)
 
 size_t ex_strlcat(char* destination, const char* source, size_t dsize)
 {
-    const char* odst = destination;
-    const char* osrc = source;
-    size_t n = dsize;
-    size_t dlen;
+    size_t result = 0;
+    size_t offset = 0;
 
-    /* Find the end of dst and adjust bytes left but don't go past end. */
-    while (n-- != 0 && *destination != '\0')
-        destination++;
-    dlen = (size_t)(destination - odst);
-    n = dsize - dlen;
+    while (result < dsize && destination[result] != '\0')
+        result++;
 
-    if (n-- == 0)
-        return(dlen + strlen(source));
-    while (*source != '\0') {
-        if (n != 0) {
-            *destination++ = *source;
-            n--;
-        }
-        source++;
+    if (result >= dsize)
+        return result + strlen(source);
+
+    while (source[offset] != '\0')
+    {
+        if (result < dsize)
+            destination[result] = source[offset];
+
+        result++;
+        offset++;
     }
-    *destination = '\0';
 
-    return (dlen + (size_t)(source - osrc)); /* count does not include NUL */
+    if (result < dsize)
+    {
+        destination[result] = '\0';
+    }
+    else if (dsize > 0)
+    {
+        destination[dsize - 1] = '\0';
+    }
+
+    return result;
 }
 
 void* ex_memrev(void* pointer, size_t size)
