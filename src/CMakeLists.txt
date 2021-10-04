@@ -6,7 +6,9 @@ set(EXLIB_SOURCES
         exlib/strings/decstr_to.c
         exlib/strings/hexstr_from.c
         exlib/strings/hexstr_to.c
+        exlib/strings/safe_decstr_to.c
         exlib/strings/safe_dump.c
+        exlib/strings/safe_hexstr_to.c
         exlib/strings/substrings.c
 )
 

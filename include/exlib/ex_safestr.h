@@ -43,8 +43,48 @@
 #define EX_STR_NOZERO    4
 
 
+/* safe_dump.c */
 bool exs_hexstr_from_buffer(const void* data, size_t dsize, char* output,
     size_t osize, uint32_t options);
+
+/* safe_decstr_to.c */
+int8_t exs_decstr_to_i8(char* string, size_t size, bool* ok);
+int16_t exs_decstr_to_i16(char* string, size_t size, bool* ok);
+int32_t exs_decstr_to_i32(char* string, size_t size, bool* ok);
+int64_t exs_decstr_to_i64(char* string, size_t size, bool* ok);
+
+short exs_decstr_to_short(char* string, size_t size, bool* ok);
+int exs_decstr_to_int(char* string, size_t size, bool* ok);
+long exs_decstr_to_long(char* string, size_t size, bool* ok);
+
+uint8_t exs_decstr_to_u8(char* string, size_t size, bool* ok);
+uint16_t exs_decstr_to_u16(char* string, size_t size, bool* ok);
+uint32_t exs_decstr_to_u32(char* string, size_t size, bool* ok);
+uint64_t exs_decstr_to_u64(char* string, size_t size, bool* ok);
+
+unsigned short exs_decstr_to_ushort(char* string, size_t size, bool* ok);
+unsigned int exs_decstr_to_uint(char* string, size_t size, bool* ok);
+unsigned long exs_decstr_to_ulong(char* string, size_t size, bool* ok);
+
+
+/* safe_hexstr_to.c */
+int8_t exs_hexstr_to_i8(char* string, size_t size, bool* ok);
+int16_t exs_hexstr_to_i16(char* string, size_t size, bool* ok);
+int32_t exs_hexstr_to_i32(char* string, size_t size, bool* ok);
+int64_t exs_hexstr_to_i64(char* string, size_t size, bool* ok);
+
+short exs_hexstr_to_short(char* string, size_t size, bool* ok);
+int exs_hexstr_to_int(char* string, size_t size, bool* ok);
+long exs_hexstr_to_long(char* string, size_t size, bool* ok);
+
+uint8_t exs_hexstr_to_u8(char* string, size_t size, bool* ok);
+uint16_t exs_hexstr_to_u16(char* string, size_t size, bool* ok);
+uint32_t exs_hexstr_to_u32(char* string, size_t size, bool* ok);
+uint64_t exs_hexstr_to_u64(char* string, size_t size, bool* ok);
+
+unsigned short exs_hexstr_to_ushort(char* string, size_t size, bool* ok);
+unsigned int exs_hexstr_to_uint(char* string, size_t size, bool* ok);
+unsigned long exs_hexstr_to_ulong(char* string, size_t size, bool* ok);
 
 
 #endif /* EX_SAFESTR_H_INCLUDED */

@@ -33,21 +33,19 @@
 #include <string.h>
 #include <limits.h>
 
-#include "exlib/ex_strings.h"
+#include "exlib/ex_safestr.h"
 
 
-#define EX_DECSTR_TO_SIGNED(__type, __min, __max)              \
+#define EXS_DECSTR_TO_SIGNED(__type, __min, __max)             \
     __type result = 0;                                         \
     int8_t check = 0;                                          \
     size_t index = 0;                                          \
-    size_t size = 0;                                           \
     bool negative = false;                                     \
     if (ok)                                                    \
     {                                                          \
         *ok = false;                                           \
     }                                                          \
-    size = strlen(string);                                     \
-    if (size == 0)                                             \
+    if (string == NULL || size == 0)                           \
     {                                                          \
         return 0;                                              \
     }                                                          \
@@ -97,17 +95,15 @@
     return result;                                             \
 
 
-#define EX_DECSTR_TO_UNSIGNED(__type, __max)                   \
+#define EXS_DECSTR_TO_UNSIGNED(__type, __max)                  \
     __type  result = 0;                                        \
     uint8_t check = 0;                                         \
     size_t  index = 0;                                         \
-    size_t  size = 0;                                          \
     if (ok)                                                    \
     {                                                          \
         *ok = false;                                           \
     }                                                          \
-    size = strlen(string);                                     \
-    if (size == 0)                                             \
+    if (string == NULL || size == 0)                           \
     {                                                          \
         return 0;                                              \
     }                                                          \
@@ -136,78 +132,78 @@
 
 
 /* Signed Fixed Size */
-int8_t ex_decstr_to_i8(char* string, bool* ok)
+int8_t exs_decstr_to_i8(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_SIGNED(int8_t, INT8_MIN, INT8_MAX)
+    EXS_DECSTR_TO_SIGNED(int8_t, INT8_MIN, INT8_MAX)
 }
 
-int16_t ex_decstr_to_i16(char* string, bool* ok)
+int16_t exs_decstr_to_i16(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_SIGNED(int16_t, INT16_MIN, INT16_MAX)
+    EXS_DECSTR_TO_SIGNED(int16_t, INT16_MIN, INT16_MAX)
 }
 
-int32_t ex_decstr_to_i32(char* string, bool* ok)
+int32_t exs_decstr_to_i32(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_SIGNED(int32_t, INT32_MIN, INT32_MAX)
+    EXS_DECSTR_TO_SIGNED(int32_t, INT32_MIN, INT32_MAX)
 }
 
-int64_t ex_decstr_to_i64(char* string, bool* ok)
+int64_t exs_decstr_to_i64(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_SIGNED(int64_t, INT64_MIN, INT64_MAX)
+    EXS_DECSTR_TO_SIGNED(int64_t, INT64_MIN, INT64_MAX)
 }
 
 
 /* Signed Platform Dependent Size */
-short ex_decstr_to_short(char* string, bool* ok)
+short exs_decstr_to_short(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_SIGNED(short, SHRT_MIN, SHRT_MAX)
+    EXS_DECSTR_TO_SIGNED(short, SHRT_MIN, SHRT_MAX)
 }
 
-int ex_decstr_to_int(char* string, bool* ok)
+int exs_decstr_to_int(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_SIGNED(int, INT_MIN, INT_MAX)
+    EXS_DECSTR_TO_SIGNED(int, INT_MIN, INT_MAX)
 }
 
-long ex_decstr_to_long(char* string, bool* ok)
+long exs_decstr_to_long(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_SIGNED(long, LONG_MIN, LONG_MAX)
+    EXS_DECSTR_TO_SIGNED(long, LONG_MIN, LONG_MAX)
 }
 
 
 /* Unsigned Fixed Size */
-uint8_t ex_decstr_to_u8(char* string, bool* ok)
+uint8_t exs_decstr_to_u8(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_UNSIGNED(uint8_t, UINT8_MAX)
+    EXS_DECSTR_TO_UNSIGNED(uint8_t, UINT8_MAX)
 }
 
-uint16_t ex_decstr_to_u16(char* string, bool* ok)
+uint16_t exs_decstr_to_u16(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_UNSIGNED(uint16_t, UINT16_MAX)
+    EXS_DECSTR_TO_UNSIGNED(uint16_t, UINT16_MAX)
 }
 
-uint32_t ex_decstr_to_u32(char* string, bool* ok)
+uint32_t exs_decstr_to_u32(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_UNSIGNED(uint32_t, UINT32_MAX)
+    EXS_DECSTR_TO_UNSIGNED(uint32_t, UINT32_MAX)
 }
 
-uint64_t ex_decstr_to_u64(char* string, bool* ok)
+uint64_t exs_decstr_to_u64(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_UNSIGNED(uint64_t, UINT64_MAX)
+    EXS_DECSTR_TO_UNSIGNED(uint64_t, UINT64_MAX)
 }
 
 
 /* Unsigned Platform Dependent Size */
-unsigned short ex_decstr_to_ushort(char* string, bool* ok)
+unsigned short exs_decstr_to_ushort(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_UNSIGNED(unsigned short, USHRT_MAX)
+    EXS_DECSTR_TO_UNSIGNED(unsigned short, USHRT_MAX)
 }
 
-unsigned int ex_decstr_to_uint(char* string, bool* ok)
+unsigned int exs_decstr_to_uint(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_UNSIGNED(unsigned int, UINT_MAX)
+    EXS_DECSTR_TO_UNSIGNED(unsigned int, UINT_MAX)
 }
 
-unsigned long ex_decstr_to_ulong(char* string, bool* ok)
+unsigned long exs_decstr_to_ulong(char* string, size_t size, bool* ok)
 {
-    EX_DECSTR_TO_UNSIGNED(unsigned long, ULONG_MAX)
+    EXS_DECSTR_TO_UNSIGNED(unsigned long, ULONG_MAX)
 }
