@@ -39,6 +39,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+#include <limits.h>
 #include <setjmp.h>
 
 #include <exlib/ex_strings.h>
@@ -76,22 +77,85 @@
         failures++;                                              \
     }                                                            \
 
+#define TEST_SIGNED_LNG(__stage, __func, __var, __value)         \
+    memset(buffer, 'z', buffer_size);                            \
+    memset(buffer2, 'z', buffer_size);                           \
+    __var = __value;                                             \
+    __func(buffer, __var);                                       \
+    sprintf(buffer2, "%ld", __var);                              \
+    if (strcmp(buffer, buffer2) != 0)                            \
+    {                                                            \
+        fprintf(stderr,                                          \
+            "%s: failed conversion (%s), expected %s, got %s\n", \
+            TEST_STR(__func), __stage, buffer2, buffer);         \
+        failures++;                                              \
+    }                                                            \
+
+#define TEST_UNSIGNED(__stage, __func, __var, __value)           \
+    memset(buffer, 'z', buffer_size);                            \
+    memset(buffer2, 'z', buffer_size);                           \
+    __var = __value;                                             \
+    __func(buffer, __var);                                       \
+    sprintf(buffer2, "%u", __var);                               \
+    if (strcmp(buffer, buffer2) != 0)                            \
+    {                                                            \
+        fprintf(stderr,                                          \
+            "%s: failed conversion (%s), expected %s, got %s\n", \
+            TEST_STR(__func), __stage, buffer2, buffer);         \
+        failures++;                                              \
+    }                                                            \
+
+#define TEST_UNSIGNED64(__stage, __func, __var, __value)         \
+    memset(buffer, 'z', buffer_size);                            \
+    memset(buffer2, 'z', buffer_size);                           \
+    __var = __value;                                             \
+    __func(buffer, __var);                                       \
+    sprintf(buffer2, "%llu", __var);                             \
+    if (strcmp(buffer, buffer2) != 0)                            \
+    {                                                            \
+        fprintf(stderr,                                          \
+            "%s: failed conversion (%s), expected %s, got %s\n", \
+            TEST_STR(__func), __stage, buffer2, buffer);         \
+        failures++;                                              \
+    }                                                            \
+
+
+#define TEST_UNSIGNED_LNG(__stage, __func, __var, __value)       \
+    memset(buffer, 'z', buffer_size);                            \
+    memset(buffer2, 'z', buffer_size);                           \
+    __var = __value;                                             \
+    __func(buffer, __var);                                       \
+    sprintf(buffer2, "%lu", __var);                              \
+    if (strcmp(buffer, buffer2) != 0)                            \
+    {                                                            \
+        fprintf(stderr,                                          \
+            "%s: failed conversion (%s), expected %s, got %s\n", \
+            TEST_STR(__func), __stage, buffer2, buffer);         \
+        failures++;                                              \
+    }                                                            \
+
 
 int main(void)
 {
-    char* buffer = NULL;
-    char* buffer2 = NULL;
-    size_t buffer_size = 4096;
-    volatile int failures = 0;
+    char*          buffer = NULL;
+    char*          buffer2 = NULL;
+    size_t         buffer_size = 4096;
+    volatile int   failures = 0;
 
-    int8_t  ivalue8 = 0;
-    int16_t ivalue16 = 0;
-    int32_t ivalue32 = 0;
-    int64_t ivalue64 = 0;
-    uint8_t  uvalue8 = 0;
-    uint16_t uvalue16 = 0;
-    uint32_t uvalue32 = 0;
-    uint64_t uvalue64 = 0;
+    int8_t         ivalue8 = 0;
+    int16_t        ivalue16 = 0;
+    int32_t        ivalue32 = 0;
+    int64_t        ivalue64 = 0;
+    short          s_short = 0;
+    int            s_int   = 0;
+    long           s_long  = 0;
+    uint8_t        uvalue8 = 0;
+    uint16_t       uvalue16 = 0;
+    uint32_t       uvalue32 = 0;
+    uint64_t       uvalue64 = 0;
+    unsigned short u_short = 0;
+    unsigned int   u_int   = 0;
+    unsigned long  u_long  = 0;
 
     buffer = malloc(buffer_size);
     buffer2 = malloc(buffer_size);
@@ -129,6 +193,63 @@ int main(void)
     TEST_SIGNED64("18a", ex_decstr_from_i64, ivalue64, 0);
     TEST_SIGNED64("19a", ex_decstr_from_i64, ivalue64, INT64_MAX / 2);
     TEST_SIGNED64("20a", ex_decstr_from_i64, ivalue64, INT64_MAX);
+
+    /* Test: ex_decstr_from_short */
+    TEST_SIGNED("21a", ex_decstr_from_short, s_short, SHRT_MIN);
+    TEST_SIGNED("22a", ex_decstr_from_short, s_short, SHRT_MIN / 2);
+    TEST_SIGNED("23a", ex_decstr_from_short, s_short, 0);
+    TEST_SIGNED("24a", ex_decstr_from_short, s_short, SHRT_MAX / 2);
+    TEST_SIGNED("25a", ex_decstr_from_short, s_short, SHRT_MAX);
+
+    /* Test: ex_decstr_from_int */
+    TEST_SIGNED("26a", ex_decstr_from_int, s_int, INT_MIN);
+    TEST_SIGNED("27a", ex_decstr_from_int, s_int, INT_MIN / 2);
+    TEST_SIGNED("28a", ex_decstr_from_int, s_int, 0);
+    TEST_SIGNED("29a", ex_decstr_from_int, s_int, INT_MAX / 2);
+    TEST_SIGNED("30a", ex_decstr_from_int, s_int, INT_MAX);
+
+    /* Test: ex_decstr_from_long */
+    TEST_SIGNED_LNG("31a", ex_decstr_from_long, s_long, LONG_MIN);
+    TEST_SIGNED_LNG("32a", ex_decstr_from_long, s_long, LONG_MIN / 2);
+    TEST_SIGNED_LNG("33a", ex_decstr_from_long, s_long, 0);
+    TEST_SIGNED_LNG("34a", ex_decstr_from_long, s_long, LONG_MAX / 2);
+    TEST_SIGNED_LNG("35a", ex_decstr_from_long, s_long, LONG_MAX);
+
+
+    /* Test: ex_decstr_from_u8 */
+    TEST_UNSIGNED("36a", ex_decstr_from_u8, uvalue8, 0);
+    TEST_UNSIGNED("37a", ex_decstr_from_u8, uvalue8, UINT8_MAX / 2);
+    TEST_UNSIGNED("38a", ex_decstr_from_u8, uvalue8, UINT8_MAX);
+
+    /* Test: ex_decstr_from_u16 */
+    TEST_UNSIGNED("39a", ex_decstr_from_u16, uvalue16, 0);
+    TEST_UNSIGNED("40a", ex_decstr_from_u16, uvalue16, UINT16_MAX / 2);
+    TEST_UNSIGNED("41a", ex_decstr_from_u16, uvalue16, UINT16_MAX);
+
+    /* Test: ex_decstr_from_u32 */
+    TEST_UNSIGNED("42a", ex_decstr_from_u32, uvalue32, 0);
+    TEST_UNSIGNED("43a", ex_decstr_from_u32, uvalue32, UINT32_MAX / 2);
+    TEST_UNSIGNED("44a", ex_decstr_from_u32, uvalue32, UINT32_MAX);
+
+    /* Test: ex_decstr_from_u64 */
+    TEST_UNSIGNED64("45a", ex_decstr_from_u64, uvalue64, 0);
+    TEST_UNSIGNED64("46a", ex_decstr_from_u64, uvalue64, UINT64_MAX / 2);
+    TEST_UNSIGNED64("47a", ex_decstr_from_u64, uvalue64, UINT64_MAX);
+
+    /* Test: ex_decstr_from_short */
+    TEST_UNSIGNED("48a", ex_decstr_from_ushort, u_short, 0);
+    TEST_UNSIGNED("49a", ex_decstr_from_ushort, u_short, USHRT_MAX / 2);
+    TEST_UNSIGNED("50a", ex_decstr_from_ushort, u_short, USHRT_MAX);
+
+    /* Test: ex_decstr_from_uint */
+    TEST_UNSIGNED("51a", ex_decstr_from_uint, u_int, 0);
+    TEST_UNSIGNED("52a", ex_decstr_from_uint, u_int, UINT_MAX / 2);
+    TEST_UNSIGNED("53a", ex_decstr_from_uint, u_int, UINT_MAX);
+
+    /* Test: ex_decstr_from_ulong */
+    TEST_UNSIGNED_LNG("54a", ex_decstr_from_ulong, u_long, 0);
+    TEST_UNSIGNED_LNG("55a", ex_decstr_from_ulong, u_long, ULONG_MAX / 2);
+    TEST_UNSIGNED_LNG("56a", ex_decstr_from_ulong, u_long, ULONG_MAX);
 
     return failures;
 }
