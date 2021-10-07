@@ -30,25 +30,11 @@
  */
 
 
-#ifndef EX_STDBOOL_H_INCLUDED
-#define EX_STDBOOL_H_INCLUDED
+#ifndef EX_MACROS_H_INCLUDED
+#define EX_MACROS_H_INCLUDED
 
 
-#if !defined(_MSC_VER) || (_MSC_VER >= 1600)
-
-#include <stdbool.h>
-
-#else /* !defined(_MSC_VER) || (_MSC_VER >= 1600) */
-
-#ifndef __cplusplus
-#define bool	unsigned char
-#define false	0
-#define true	1
-#endif /* __cplusplus */
-
-#define __bool_true_false_are_defined	1
-
-#endif /* !defined(_MSC_VER) || (_MSC_VER >= 1600) */
+#define EX_ARRAYSIZE(a) (sizeof(a) / sizeof(a[0]))
 
 
-#endif /* EX_STDBOOL_H_INCLUDED */
+#endif /* EX_MACROS_H_INCLUDED */
