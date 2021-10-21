@@ -46,7 +46,7 @@
     {                                                          \
         *ok = false;                                           \
     }                                                          \
-    size = strlen(string);                                     \
+    size = ex_strlen(string);                                  \
     if (size == 0)                                             \
     {                                                          \
         return 0;                                              \
@@ -106,7 +106,7 @@
     {                                                          \
         *ok = false;                                           \
     }                                                          \
-    size = strlen(string);                                     \
+    size = ex_strlen(string);                                  \
     if (size == 0)                                             \
     {                                                          \
         return 0;                                              \

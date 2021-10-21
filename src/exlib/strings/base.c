@@ -92,6 +92,11 @@ size_t ex_strlcat(char* destination, const char* source, size_t dsize)
     return result;
 }
 
+size_t ex_strlen(const char* str)
+{
+    return str ? strlen(str) : 0;
+}
+
 void* ex_memrev(void* pointer, size_t size)
 {
     size_t   index = 0;

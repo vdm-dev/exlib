@@ -44,7 +44,7 @@
     {                                                          \
         *ok = false;                                           \
     }                                                          \
-    size = strlen(string);                                     \
+    size = ex_strlen(string);                                  \
     if (size < 1 || size > sizeof(result) * 2)                 \
     {                                                          \
         return 0;                                              \
