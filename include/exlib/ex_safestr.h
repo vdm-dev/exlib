@@ -43,6 +43,11 @@
 #define EX_STR_NOZERO    4
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+
 /* safe_dump.c */
 bool exs_hexstr_from_buffer(const void* data, size_t dsize, char* output,
     size_t osize, uint32_t options);
@@ -85,6 +90,11 @@ uint64_t exs_hexstr_to_u64(char* string, size_t size, bool* ok);
 unsigned short exs_hexstr_to_ushort(char* string, size_t size, bool* ok);
 unsigned int exs_hexstr_to_uint(char* string, size_t size, bool* ok);
 unsigned long exs_hexstr_to_ulong(char* string, size_t size, bool* ok);
+
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 
 #endif /* EX_SAFESTR_H_INCLUDED */

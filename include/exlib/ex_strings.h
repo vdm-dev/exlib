@@ -37,6 +37,11 @@
 #include <exlib/ex_types.h>
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+
 /* base.c */
 size_t ex_strlcpy(char* destination, const char* source, size_t dsize);
 size_t ex_strlcat(char* destination, const char* source, size_t dsize);
@@ -120,6 +125,11 @@ uint64_t ex_hexstr_to_u64(char* string, bool* ok);
 unsigned short ex_hexstr_to_ushort(char* string, bool* ok);
 unsigned int ex_hexstr_to_uint(char* string, bool* ok);
 unsigned long ex_hexstr_to_ulong(char* string, bool* ok);
+
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 
 #endif /* EX_STRINGS_H_INCLUDED */
