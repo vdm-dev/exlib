@@ -35,6 +35,7 @@
 
 
 #define EX_ARRAYSIZE(a) (sizeof(a) / sizeof(a[0]))
+#define EX_UNUSED(a) ((void) a)
 
 
 #endif /* EX_MACROS_H_INCLUDED */
