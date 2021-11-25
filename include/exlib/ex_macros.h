@@ -37,5 +37,13 @@
 #define EX_ARRAYSIZE(a) (sizeof(a) / sizeof(a[0]))
 #define EX_UNUSED(a) ((void) a)
 
+#define EX_ARRAY_TO_UINT16(a, offset) ((a[offset + 0] << 8)  | a[offset + 1])
+
+#define EX_ARRAY_TO_UINT32(a, offset) \
+    ((a[offset + 0] << 24) |          \
+     (a[offset + 1] << 16) |          \
+     (a[offset + 2] << 8)  |          \
+      a[offset + 3])
+
 
 #endif /* EX_MACROS_H_INCLUDED */
