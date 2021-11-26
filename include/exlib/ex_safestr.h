@@ -48,6 +48,10 @@ extern "C" {
 #endif /* __cplusplus */
 
 
+/* safe_base.c */
+int exs_strcpy(char* destination, size_t dmax, const char* source);
+int exs_strcat(char* destination, size_t dmax, const char* source);
+
 /* safe_dump.c */
 bool exs_hexstr_from_buffer(const void* data, size_t dsize, char* output,
     size_t osize, uint32_t options);
