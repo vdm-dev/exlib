@@ -2,7 +2,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 set(EXLIB_SOURCES
         exlib/hashes/crc32.c
-	exlib/strings/base.c
+        exlib/path/base.c
+        exlib/path/linux.c
+        exlib/strings/base.c
         exlib/strings/decstr_from.c
         exlib/strings/decstr_to.c
         exlib/strings/hexstr_from.c

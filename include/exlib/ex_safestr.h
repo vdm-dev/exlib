@@ -50,7 +50,11 @@ extern "C" {
 
 /* safe_base.c */
 int exs_strcpy(char* destination, size_t dmax, const char* source);
+int exs_strncpy(char* destination, size_t dmax, const char* source,
+    size_t count);
 int exs_strcat(char* destination, size_t dmax, const char* source);
+int exs_strncat(char* destination, size_t dmax, const char* source,
+    size_t count);
 
 /* safe_dump.c */
 bool exs_hexstr_from_buffer(const void* data, size_t dsize, char* output,

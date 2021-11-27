@@ -57,7 +57,33 @@ int exs_strcpy(char* destination, size_t dmax, const char* source)
     }
 
     if (size > 0)
-        memcpy(destination, source, size);
+        memmove(destination, source, size);
+
+    destination[size] = '\0';
+
+    return 0;
+}
+
+int exs_strncpy(char* destination, size_t dmax, const char* source,
+    size_t count)
+{
+    size_t size = 0;
+
+    if (destination == NULL)
+        return EINVAL;
+
+    size = ex_strnlen(source, count);
+
+    if (size >= dmax)
+    {
+        if (dmax > 0)
+            destination[0] = '\0';
+
+        return ERANGE;
+    }
+
+    if (size > 0)
+        memmove(destination, source, size);
 
     destination[size] = '\0';
 
@@ -79,7 +105,30 @@ int exs_strcat(char* destination, size_t dmax, const char* source)
         return ERANGE;
 
     if (size > 0)
-        memcpy(&destination[dsize], source, size);
+        memmove(&destination[dsize], source, size);
+
+    destination[dsize + size] = '\0';
+
+    return 0;
+}
+
+int exs_strncat(char* destination, size_t dmax, const char* source,
+    size_t count)
+{
+    size_t dsize = 0;
+    size_t size = 0;
+
+    if (destination == NULL)
+        return EINVAL;
+
+    dsize = strlen(destination);
+    size = ex_strnlen(source, count);
+
+    if ((dsize + size) >= dmax)
+        return ERANGE;
+
+    if (size > 0)
+        memmove(&destination[dsize], source, size);
 
     destination[dsize + size] = '\0';
 

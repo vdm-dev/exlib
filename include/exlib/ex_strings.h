@@ -46,6 +46,7 @@ extern "C" {
 size_t ex_strlcpy(char* destination, const char* source, size_t dsize);
 size_t ex_strlcat(char* destination, const char* source, size_t dsize);
 size_t ex_strlen(const char* str);
+size_t ex_strnlen(const char* string, size_t limit);
 void* ex_memrev(void* pointer, size_t size);
 
 /* substrings.c */

@@ -97,6 +97,16 @@ size_t ex_strlen(const char* str)
     return str ? strlen(str) : 0;
 }
 
+size_t ex_strnlen(const char* string, size_t limit)
+{
+    size_t result = 0;
+    while (string != NULL && string[result] != '\0' && result < limit)
+    {
+        result++;
+    }
+    return result;
+}
+
 void* ex_memrev(void* pointer, size_t size)
 {
     size_t   index = 0;
