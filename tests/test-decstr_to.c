@@ -41,6 +41,7 @@
 #include <signal.h>
 #include <limits.h>
 #include <setjmp.h>
+#include <inttypes.h>
 
 #include <exlib/ex_strings.h>
 
@@ -63,12 +64,13 @@
 
 #define TEST_SIGNED64(__stage, __func, __var, __value)               \
     memset(buffer, 'z', buffer_size);                                \
-    sprintf(buffer, "%lld", __value);                                \
+    sprintf(buffer, "%" PRId64, __value);                            \
     __var = __func(buffer, &ok);                                     \
     if (__var != __value || ok == false)                             \
     {                                                                \
         fprintf(stderr,                                              \
-            "%s: failed conversion (%s), expected %lld, got %lld\n", \
+            "%s: failed conversion (%s), expected %" PRId64 ", got " \
+            "%" PRId64 "\n",                                         \
             TEST_STR(__func), __stage, __value, __var);              \
         failures++;                                                  \
     }                                                                \
@@ -100,12 +102,13 @@
 
 #define TEST_UNSIGNED64(__stage, __func, __var, __value)             \
     memset(buffer, 'z', buffer_size);                                \
-    sprintf(buffer, "%llu", __value);                                \
+    sprintf(buffer, "%" PRIu64, __value);                            \
     __var = __func(buffer, &ok);                                     \
     if (__var != __value || ok == false)                             \
     {                                                                \
         fprintf(stderr,                                              \
-            "%s: failed conversion (%s), expected %llu, got %llu\n", \
+            "%s: failed conversion (%s), expected %" PRIu64 ", got " \
+            "%" PRIu64 "\n",                                         \
             TEST_STR(__func), __stage, __value, __var);              \
         failures++;                                                  \
     }                                                                \

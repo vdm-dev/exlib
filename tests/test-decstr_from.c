@@ -41,6 +41,7 @@
 #include <signal.h>
 #include <limits.h>
 #include <setjmp.h>
+#include <inttypes.h>
 
 #include <exlib/ex_strings.h>
 
@@ -68,7 +69,7 @@
     memset(buffer2, 'z', buffer_size);                           \
     __var = __value;                                             \
     __func(buffer, __var);                                       \
-    sprintf(buffer2, "%lld", __var);                             \
+    sprintf(buffer2, "%" PRId64, __var);                         \
     if (strcmp(buffer, buffer2) != 0)                            \
     {                                                            \
         fprintf(stderr,                                          \
@@ -110,7 +111,7 @@
     memset(buffer2, 'z', buffer_size);                           \
     __var = __value;                                             \
     __func(buffer, __var);                                       \
-    sprintf(buffer2, "%llu", __var);                             \
+    sprintf(buffer2, "%" PRIu64, __var);                         \
     if (strcmp(buffer, buffer2) != 0)                            \
     {                                                            \
         fprintf(stderr,                                          \
