@@ -102,7 +102,12 @@ int exs_strcat(char* destination, size_t dmax, const char* source)
     size = ex_strlen(source);
 
     if ((dsize + size) >= dmax)
+    {
+        if (dmax > 0)
+            destination[0] = '\0';
+
         return ERANGE;
+    }
 
     if (size > 0)
         memmove(&destination[dsize], source, size);
@@ -125,7 +130,12 @@ int exs_strncat(char* destination, size_t dmax, const char* source,
     size = ex_strnlen(source, count);
 
     if ((dsize + size) >= dmax)
+    {
+        if (dmax > 0)
+            destination[0] = '\0';
+
         return ERANGE;
+    }
 
     if (size > 0)
         memmove(&destination[dsize], source, size);
