@@ -48,7 +48,7 @@ extern "C" {
 #endif /* __cplusplus */
 
 
-/* safe_base.c */
+/* safe_strbase.c */
 int exs_strcpy(char* destination, size_t dmax, const char* source);
 int exs_strncpy(char* destination, size_t dmax, const char* source,
     size_t count);

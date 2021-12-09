@@ -37,10 +37,10 @@
 #include <exlib/ex_types.h>
 
 
-/* path/linux.c */
+/* pathlinux.c */
 size_t ex_application_path(char* path, size_t size);
 
-/* path/base.c */
+/* pathbase.c */
 size_t ex_get_path(char* output, size_t osize, const char* spath);
 size_t ex_get_filename(char* output, size_t osize, const char* spath);
 size_t ex_get_basename(char* output, size_t osize, const char* spath);
